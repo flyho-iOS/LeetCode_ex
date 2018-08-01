@@ -7,29 +7,18 @@
     Note that you cannot sell a stock before you buy one.
     （卖出股票前只能买入）
 
-###### Example 1:
-
-    Input: [7,1,5,3,6,4]
-    Output: 5
-    Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-             Not 7-1 = 6, as selling price needs to be larger than buying price.
-             
-###### Example 2:
-    Input: [7,6,4,3,1]
-    Output: 0
-    Explanation: In this case, no transaction is done, i.e. max profit = 0.
-
+#### 解题
 ```
 class Solution(object):
     def maxProfit(self, prices):
-        """
-        :type prices: List[int]
-        :rtype: int
-        """
+        ## 声明两个变量，记录最大利润max_profit、最小成本min_price
         max_profit, min_price = 0, float('inf')
         for price in prices:
+            ## 遍历数组，记录最小成本
             min_price = min(min_price, price)
+            ## 计算某天卖出的利润
             profit = price - min_price
+            ## 计算记录某天卖出的利润是否最大
             max_profit = max(max_profit, profit)
         return max_profit
 ```
