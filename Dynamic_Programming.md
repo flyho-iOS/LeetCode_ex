@@ -31,7 +31,7 @@ Given a list of non-negative integers representing the amount of money of each h
 
 ```
   例 [2,7,9,3,1]
-	 n    		 2  7   9   3   1
+   n    	     2  7   9   3   1
   抢(yes)	     2  7  11  10  12
   不抢(no)	     0  2   7  11  10
   
@@ -40,7 +40,7 @@ Given a list of non-negative integers representing the amount of money of each h
 ```
 
 ```
-	def rob(self, nums):
+    def rob(self, nums):
         """
         :type nums: List[int]
         :rtype: int
