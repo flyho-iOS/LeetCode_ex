@@ -69,7 +69,7 @@ On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 ind
 ```
 ###### 解题过程
 ```
-	def minCostClimbingStairs(self, cost):
+     def minCostClimbingStairs(self, cost):
         dp0, dp1, dp2 = 0, 0, 0
         for i in range(2,len(cost)+1):
             dp0 = min(dp1+cost[i-1],dp2+cost[i-2])
