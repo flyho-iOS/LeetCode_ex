@@ -1,11 +1,10 @@
 # 121. Best Time to Buy and Sell Stock
 
-    Say you have an array for which the ith element is the price of a given stock on day i.
-    (给你一个数组prices，数组index代表第index天， prices[index]代表第index天的股价)
-    If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
-    （如果你只允许最多交易一次【即买卖各一次】，设计一个算法计算最大利润）
-    Note that you cannot sell a stock before you buy one.
-    （卖出股票前只能买入）
+Say you have an array for which the ith element is the price of a given stock on day i.(给你一个数组prices，数组index代表第index天， prices[index]代表第index天的股价)
+
+If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.（如果你只允许最多交易一次【即买卖各一次】，设计一个算法计算最大利润）
+
+Note that you cannot sell a stock before you buy one.（卖出股票前只能买入）
 
 #### 解题
 ```
@@ -55,7 +54,7 @@ Given a list of non-negative integers representing the amount of money of each h
 
 ## [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
 
-###### On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.（给定一个数组，数组中都是非负整数，踩在一个梯级上就要花钱，可以一次走一步或者两步，计算到达尽头时最小的花费是多少）
+On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.（给定一个数组，数组中都是非负整数，踩在一个梯级上就要花钱，可以一次走一步或者两步，计算到达尽头时最小的花费是多少）
 
 ###### Example 1:
 * Input: cost = [10, 15, 20]  
@@ -70,7 +69,7 @@ Given a list of non-negative integers representing the amount of money of each h
 ```
 ###### 解题过程
 ```
-	def minCostClimbingStairs(self, cost):
+     def minCostClimbingStairs(self, cost):
         dp0, dp1, dp2 = 0, 0, 0
         for i in range(2,len(cost)+1):
             dp0 = min(dp1+cost[i-1],dp2+cost[i-2])
