@@ -37,3 +37,53 @@ class Solution(object):
             queue.append((n1.right,n2.right))
         return True
 ```
+
+## [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).(给定一棵二叉树，返回一个按层级顺序存储的结果)
+
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+
+return its level order traversal as:
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+
+#### 解题过程
+
+```
+class Solution:
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        # 根节点为空，返回[]
+        if not root:
+            return []
+        
+        res = [[root.val]]
+        # 从左往右进行递归，深度从1开始
+        self.helper(root.left,1,res)
+        self.helper(root.right,1,res)
+        return res
+        
+    # param depth 可看做res的index
+    def helper(self,node,depth,res):
+    	 # 当节点为空，则return 
+        if not node:
+            return
+        # 如果当前深度的list已存在，直接append    
+        if depth < len(res):
+            res[depth].append(node.val)
+        # 如果不存在，则创建
+        else:
+            res.append([node.val])
+        # 再往下递归，因此深度+1
+        depth += 1
+        self.helper(node.left,depth,res)
+        self.helper(node.right,depth,res)
+```
