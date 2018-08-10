@@ -117,7 +117,7 @@ class Solution:
         
         while stack:
             node,val = stack.pop()
-            # 当该结点没有左或右结点，说明该路径遍历完毕，已组成一个数字，并加到res
+            # 当该结点没有左右结点，说明该路径遍历完毕，已组成一个数字，并加到res
             if not node.left and not node.right:
                 res += val
             if node.left:
@@ -125,4 +125,22 @@ class Solution:
             if node.right:
                 stack.append((node.right,val*10+node.right.val))
         return res
+```
+
+```
+class Solution:
+	 # DFS 递归解法
+    def sumNumbers(self, root):
+        self.res = 0
+        self.helper(root, root.val)
+        return self.res
+    
+    def helper(self,node,val):
+        if not node.left and not node.right:
+            self.res += val
+        
+        if node.left:
+            self.helper(node.left, val*10+node.left.val)
+        if node.right:
+            self.helper(node.right, val*10+node.right.val)
 ```
