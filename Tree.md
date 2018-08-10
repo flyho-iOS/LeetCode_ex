@@ -87,3 +87,42 @@ class Solution:
         self.helper(node.left,depth,res)
         self.helper(node.right,depth,res)
 ```
+
+## [129. Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/description/)
+
+Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+(给定一个二叉树，每个节点都是0-9，由根节点到叶节点都能构成一个数，求这些数的和)
+An example is the root-to-leaf path 1->2->3 which represents the number 123.
+
+Find the total sum of all root-to-leaf numbers.
+
+Note: A leaf is a node with no children.
+
+#### 解题过程
+```
+class Solution:
+	 # DFS 迭代解法
+    def sumNumbers(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        
+        res = 0
+        stack = []
+        # 压到stack中的是pair，保存该结点和该结点前的元素所组成的数字
+        stack.append((root, root.val))
+        
+        while stack:
+            node,val = stack.pop()
+            # 当该结点没有左或右结点，说明该路径遍历完毕，已组成一个数字，并加到res
+            if not node.left and not node.right:
+                res += val
+            if node.left:
+                stack.append((node.left, val*10+node.left.val))
+            if node.right:
+                stack.append((node.right,val*10+node.right.val))
+        return res
+```
