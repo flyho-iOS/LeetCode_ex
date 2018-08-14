@@ -127,6 +127,7 @@ Example:
 Input:  1->2->6->3->4->5->6, val = 6  
 Output: 1->2->3->4->5
 
+###### 解题思路
 ```
 	def removeElements(self, head, val):
         
@@ -141,5 +142,50 @@ Output: 1->2->3->4->5
             else:
                 temp = temp.next
             
+        return dummy.next
+```
+
+## [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+Given a linked list, remove the n-th node from the end of list and return its head.(删除倒数第N个结点)
+
+Example:
+
+Given linked list: 1->2->3->4->5, and n = 2.
+
+After removing the second node from the end, the linked list becomes 1->2->3->5.
+Note:
+
+Given n will always be valid.
+
+Follow up:
+
+Could you do this in one pass? （只用一次遍历解决）
+
+###### 解题思路
+```
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+       
+        if not head or not head.next:
+            return None
+        # 定义dummy，dummy.next指向head    
+        dummy = ListNode(0)
+        dummy.next = head
+        # 定义快慢指针
+        slow = fast = dummy
+        # 快指针先走n步，然后快慢指针一起走，直到fast.next不存在，此时slow.next指向的就是要删除的结点
+        while fast.next:
+            if n > 0:
+                n -= 1
+            else:
+                slow = slow.next
+            fast = fast.next
+        # 特殊情况处理：如果slow指针没有动，停在dummy
+        if slow == dummy:
+        	  # dummy.next指向slow.next.next
+            dummy.next = slow.next.next
+        else:
+            slow.next = slow.next.next
         return dummy.next
 ```
