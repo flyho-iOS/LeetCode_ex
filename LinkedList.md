@@ -218,3 +218,37 @@ class Solution:
         cur.next = l1 or l2
         return dummy.next
 ```
+
+## [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/description/)
+
+Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+Note: Do not modify the linked list.(找出一个带环的链表的环的起点)
+
+Follow up:
+Can you solve it without using extra space?
+
+###### 解题思路
+```
+class Solution(object):
+    def detectCycle(self, head):
+        
+        if not head:
+            return None
+        
+        ## fast每次走两步，slow每次走一步
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            # 当fast和slow相遇，跳出循环
+            if slow == fast:
+                break
+        else:
+            return None
+        # fast和slow随意选一个，然后head和slow分别各走一步，直到相遇，得到的就是环开始的点
+        while head != slow:
+            slow = slow.next
+            head = head.next
+        return head
+```
