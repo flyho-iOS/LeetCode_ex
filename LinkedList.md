@@ -189,3 +189,32 @@ class Solution(object):
             slow.next = slow.next.next
         return dummy.next
 ```
+
+## [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/description/)
+
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+
+###### Example:
+
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+
+###### 解题思路
+```
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        # cur是当前遍历位置的指针
+        dummy = cur = ListNode(0)
+        while l1 and l2:
+			# cur指向l1和l2val小的
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        # 遍历结束l1和l2可能两个都为空或其中一个为空，cur.next指向不为空的，即把剩余部分直接连接
+        cur.next = l1 or l2
+        return dummy.next
+```
