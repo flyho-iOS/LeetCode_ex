@@ -1,3 +1,110 @@
+##[144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)（前序遍历）
+
+#### 解题过程
+遍历顺序：中 -> 左 -> 右
+
+```
+class Solution(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        ## 递归
+        nodeVals = []
+        if root:
+            nodeVals += [root.val]
+            nodeVals +=  self.preorderTraversal(root.left)
+            nodeVals +=  self.preorderTraversal(root.right)
+        return nodeVals
+        
+        ## 非递归
+        if not root: return []
+        
+        res = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            res += [node.val] ## 
+            if node.right: stack.append(node.right)
+            if node.left: stack.append(node.left)
+        return res
+
+```
+
+##[94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)（中序遍历）
+
+#### 解题过程
+遍历顺序： 左 -> 中 -> 右
+
+```
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        ## 递归
+        ans = []
+        if root:
+            ans += self.inorderTraversal(root.left)
+            ans += [root.val]
+            ans += self.inorderTraversal(root.right)
+        return ans
+    
+        ## 非递归
+        ans, stack = [], [(root,False)]
+        while stack:
+            node,visited = stack.pop()
+            if not node: continue
+            if visited:
+                ans.append(node.val)
+            else:
+                stack.append((node.right,False))
+                stack.append((node,True))
+                stack.append((node.left,False))
+        return ans
+```
+
+##[145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+
+#### 解题过程
+遍历顺序： 左 -> 右 -> 中 
+
+```
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        ## 递归
+        ans = []
+        if root:
+            ans += self.postorderTraversal(root.left)
+            ans += self.postorderTraversal(root.right)
+            ans += [root.val]
+        return ans
+        
+        ## 非递归
+        
+        if not root: return []
+        
+        ans = []
+        stack = [(root,False)]
+        while stack:
+            node, visited = stack.pop()
+            if not node: continue
+            if visited:
+                ans.append(node.val)
+            else:
+                stack.append((node,True))
+                ## 由于左结点先于又结点，因此右结点先入栈
+                stack.append((node.right,False))
+                stack.append((node.left,False))
+        return ans
+```
+
 ## [100. Same Tree](https://leetcode.com/problems/same-tree/description/)
 
 Given two binary trees, write a function to check if they are the same or not.
