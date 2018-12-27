@@ -162,6 +162,8 @@ Output: 4
 
 ###### 解题思路
 ```
+## 能否组成正方形 取决于最小的边 ，边必须大于1
+
 class Solution(object):
     def maximalSquare(self, matrix):
         

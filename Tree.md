@@ -98,8 +98,8 @@ class Solution(object):
             if visited:
                 ans.append(node.val)
             else:
+            ## 中序遍历顺序为左->右->中，入栈顺序应该改过来
                 stack.append((node,True))
-                ## 由于左结点先于又结点，因此右结点先入栈
                 stack.append((node.right,False))
                 stack.append((node.left,False))
         return ans
